@@ -314,7 +314,7 @@ $P(F' > F_{0{,}95;\,q,\,n - k_A k_B})$. Hier mit den erwarteten Zellgrößen $n\
 
 **Rangmangel.** Bei Achsenabschnitt plus allen $k$ Stufenspalten gilt $X v = 0$ für $v = (1, -1, \dots, -1)$. Die Anpassung $X\hat\beta$ ist eindeutig, $\hat\beta$ nur bis auf $\hat\beta + t v$; `lstsq` und `pinv` wählen die Lösung kleinster Länge.
 
-**Literatur.** Hastie, Tibshirani, Friedman: *The Elements of Statistical Learning*, 2. Aufl., Abschn. 3.2, S. 46: bei nicht vollem Rang (zum Beispiel durch redundant codierte qualitative Eingaben) sind die Koeffizienten nicht
+**Literatur.** Hastie, Tibshirani, Friedman: *The Elements of Statistical Learning*, 2. Aufl., Abschn. 3.2, S. 46 (Seitenzahl nach Quellenbericht, nicht im Original erneut nachgeschlagen): bei nicht vollem Rang (zum Beispiel durch redundant codierte qualitative Eingaben) sind die Koeffizienten nicht
 eindeutig, die angepassten Werte aber schon. Kontraste, Typ-III-Quadratsummen und die Namen der Codierungen in Programmen sind hier nicht an einer Quelle geprüft.
         """
     )
