@@ -93,16 +93,16 @@ Alle Zahlen: Container-Strom dieser Demo, Modell Art × Wochenende mit Wechselwi
 - **Die Lösung von `solve(X'X)` bei Rangmangel ist plattformabhängig:** die App zeigt eine Fehlermeldung, wenn die Plattform eine meldet.
 - **Ursachen:** Aussagen mit „weil“ in der App (zum Beispiel zur Varianz der Codierungen im additiven Szenario) folgen aus den Formeln des Wald-Tests, nicht aus einer eigenen Messung der Ursache; die Lücke zwischen Simulation und exakter Formel erklärt die Mittelung über zufällige Zellgrößen nur teilweise (B9).
 
-## Befunde und Korrekturen gegenüber dem Plan
+## Korrekturen und Ergänzungen gegenüber der ersten Rechnung
 
 - **Wiederholungen:** 10 000 statt 2 500 je Zeile (die gestapelte Rechnung mit Wald-Formeln braucht für alle Zeilen etwa 70 Sekunden); die Häufigkeiten sind daher mit ±1,0 statt ±2 Prozentpunkten Monte-Carlo-Fehler angegeben.
 - **Gegenprobe:** Die frühere Messung fand 66 von 72 Zeilen innerhalb zweier Standardfehler der exakten Teststärke und nannte das unauffällig. Mit 10 000 Wiederholungen sind es 59 von 72 (62 innerhalb dreier), größte Abweichung 2,0 Prozentpunkte: Die Formel liegt bei Summe und gewichtet etwas über der Simulation. Die Abweichung ist teilweise erklärt (B9); der Rest liegt innerhalb zweier Standardfehler.
 - **σ_pool exakt:** 0,689 aus geschlossenen Formeln (Varianz der Art plus Varianz des Kundeneffekts plus Varianz aus Zoll und Vorlauf) statt 0,688 aus einer Monte-Carlo-Stichprobe; die exakten Teststärken weichen deshalb um höchstens 0,1 Prozentpunkte von den früheren ab (zum Beispiel Referenz Import bei n = 600: 81,2 statt 81,3 %).
 - **Kernzahlen neu gemessen** mit dem Strom dieser Demo (SplitMix64 statt numpy): bei n = 600, Generator-Szenario, gleiche Streuung verwirft Referenz Import in 79,9 % (früher 81,0), Referenz Export in 5,1 % (5,2), Summe in 55,2 % (56,2). Die Aussagen bleiben, die Zahlen verschieben sich um bis 1,1 Prozentpunkte, innerhalb des Monte-Carlo-Fehlers beider Messungen.
-- **Experiment 5 (Referenzkunde) ist enthalten** (im Entwurf war es als letztes Experiment vorgesehen und streichbar); Typ I und Typ III für Art stehen als Zeilen in Experiment 2.
-- **Zusätzlich gegenüber dem Entwurf:** ein achtes Preset „Überkreuz, Streuung des Generators“ (der Negativbefund B8 hat ein eigenes Szenario), ein Modell-Schalter „additiv“ im Handbeispiel und die Gewichte der Zellmittel je Koeffizient (Zeile der Inversen der Zellmatrix).
-- **Sätze zu den Koeffizienten sind geprüft:** die Sätze („Mittel Import / Wochentag“, „−½ × ungewichtetes Mittel“, …) werden gegen die Koeffizienten von `lstsq` gehalten (alle Codierungen, alle Referenzstufen, 30 Zufallsgrößen der Zellen); der Entwurf nannte sie nur.
-- **Port:** 9965 (der Entwurf nannte 9964, der später gesetzte Eintrag in `.claude/launch.json` gilt).
+- **Experiment 5 (Referenzkunde) gehört zur Demo**; Typ I und Typ III für Art stehen als Zeilen in Experiment 2.
+- **Zusätzlich:** ein achtes Preset „Überkreuz, Streuung des Generators“ (der Negativbefund B8 hat ein eigenes Szenario), ein Modell-Schalter „additiv“ im Handbeispiel und die Gewichte der Zellmittel je Koeffizient (Zeile der Inversen der Zellmatrix).
+- **Sätze zu den Koeffizienten sind geprüft:** die Sätze („Mittel Import / Wochentag“, „−½ × ungewichtetes Mittel“, …) werden gegen die Koeffizienten von `lstsq` gehalten (alle Codierungen, alle Referenzstufen, 30 Zufallsgrößen der Zellen); sie stehen nicht nur als Text da.
+- **Port:** 9965 (Eintrag in `.claude/launch.json`).
 
 ## Verifikation
 
@@ -146,10 +146,10 @@ Gesamtzahl: 173 Tests.
 
 - **Typ II** der Quadratsummen, **drei und mehr Faktoren**, geordnete Faktoren (Polynomkontraste), selbst gewählte Kontraste und **Mehrfachvergleiche** (Tukey, Bonferroni): nicht nachgerechnet und nicht gezeigt.
 - **Vortest-Strategie** („erst die Wechselwirkung testen, dann das Modell wählen“): sie ist eine Modellwahl mit Folgen für die Tests danach, siehe [`modellwahl-demo`](https://github.com/sebastian-hanisch/modellwahl-demo); hier nicht gemessen.
-- **Ridge und die Wahl von λ** bei fast abhängigen Spalten: nur als Verweis auf [`tikhonov-demo`](https://github.com/sebastian-hanisch/tikhonov-demo) und [`parameterwahl-demo`](https://github.com/sebastian-hanisch/parameterwahl-demo); die fast abhängigen Spalten selbst behandelt [`kollinearitaet-auswahl-demo`](https://github.com/sebastian-hanisch/kollinearitaet-auswahl-demo).
+- **Ridge und die Wahl von λ** bei fast abhängigen Spalten: nur als Verweis auf [`tikhonov-demo`](https://github.com/sebastian-hanisch/tikhonov-demo) und [`parameterwahl-demo`](https://github.com/sebastian-hanisch/parameterwahl-demo); die fast abhängigen Spalten selbst behandelt [`kollinearitaet-auswahl-demo`](https://github.com/sebastian-hanisch/kollinearitaet-auswahl-demo). <!-- links-ok: Repo existiert auf GitHub, lokal fehlt der Ordner -->
 - **Kunde als Zufallseffekt** (Schrumpfung statt zwölf fester Koeffizienten): [`cluster-gemischt-demo`](https://github.com/sebastian-hanisch/cluster-gemischt-demo); hier nur als fester Faktor mit Referenzkunde.
 - **Rohskala (Tage)** des Ausgangs: nicht gemessen; gerechnet wird auf der log-Verweilzeit.
-- **Zentrieren stetiger Merkmale** als Gegenstück der Summencodierung (dieselbe Algebra): nicht gemessen; Wechselwirkung als Regressionsterm bei der Wirkungsschätzung steht in [`schaetzen-demo`](https://github.com/sebastian-hanisch/schaetzen-demo) und [`wen-behandeln-demo`](https://github.com/sebastian-hanisch/wen-behandeln-demo).
+- **Zentrieren stetiger Merkmale** als Gegenstück der Summencodierung (dieselbe Algebra): nicht gemessen; Wechselwirkung als Regressionsterm bei der Wirkungsschätzung steht in [`schaetzen-demo`](https://github.com/sebastian-hanisch/schaetzen-demo) und [`wen-behandeln-demo`](https://github.com/sebastian-hanisch/wen-behandeln-demo). <!-- links-ok: Repo existiert auf GitHub, lokal fehlt der Ordner -->
 - **PDF-Export** und eine Live-Simulation über viele Wiederholungen: die Messreihen sind vorgerechnet (Rechenzeit der gestapelten Messreihen etwa 70 Sekunden), in der App läuft nur eine Stichprobe live.
 
 ## Lokal ausführen
@@ -175,4 +175,4 @@ Gebaut mit Streamlit, Plotly, NumPy, SciPy und pandas.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Regression und GLM: wann die Gleichung trügt](https://sebastianhanisch.net/konzepte-regression.html).
